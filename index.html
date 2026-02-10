@@ -3,44 +3,61 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Valentine’s RSVP 💌</title>
-  <meta name="description" content="You’re invited! Please RSVP for our Valentine’s celebration." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600..800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <title>Will you be my Valentine? 💌</title>
+  <meta name="description" content="A cute Valentine invitation with RSVP." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <main class="card">
-    <header class="hero">
-      <div class="hearts" aria-hidden="true">❤︎ ❤︎ ❤︎</div>
-      <h1 class="title">Be My Valentine?</h1>
-      <p class="subtitle">February 14 • 7:00 PM • Your Place / Venue</p>
-    </header>
+  <div class="bg-hearts" aria-hidden="true"></div>
 
+  <main class="wrapper">
+    <!-- HERO / QUESTION -->
+    <section class="hero" id="home" aria-labelledby="valentine-title">
+      <div class="hearts-top" aria-hidden="true">❤︎ ❤︎ ❤︎</div>
+      <h1 id="valentine-title" class="title">Will you be my Valentine?</h1>
+      <p class="subtitle">February 14 • 7:00 PM • Your Venue</p>
+
+      <div class="cta">
+        <button class="btn yes" id="yesBtn" aria-describedby="yesHelp">Yes 💘</button>
+        <button class="btn no" id="noBtn" aria-describedby="noHelp">No 😅</button>
+      </div>
+      <p id="yesHelp" class="sr-only">Clicking Yes will open the RSVP form.</p>
+      <p id="noHelp" class="sr-only">The No button avoids being clicked for fun.</p>
+
+      <!-- Scroll hint -->
+      <div class="scroll-hint" aria-hidden="true">Scroll ↓</div>
+    </section>
+
+    <!-- DETAILS -->
     <section class="details">
-      <p>Hi! I’d love to celebrate with you. Kindly RSVP below. 💖</p>
+      <p>Let’s celebrate together. Kindly RSVP so I can plan something special. 💖</p>
       <ul>
-        <li><strong>Dress code:</strong> Something red or pink</li>
+        <li><strong>Dress code:</strong> Red / pink vibes</li>
         <li><strong>Plan:</strong> Chill dinner + dessert</li>
       </ul>
     </section>
 
-    <section class="form-section">
-      <h2>RSVP</h2>
-
-      <!-- Inline status messages -->
+    <!-- RSVP FORM -->
+    <section class="form-section" id="rsvp" aria-labelledby="rsvp-title">
+      <h2 id="rsvp-title">RSVP</h2>
       <div id="form-status" role="status" aria-live="polite"></div>
 
       <!-- Formspree integration -->
-      <form id="rsvpForm" action="https://formspree.io/f/xzdazqyw" method="POST">
-        <!-- Anti-bot honeypot (hidden field) -->
+      <form id="rsvpForm" action="https://formspree.io/f/xzdazqyw" method="POST" novalidate>
+        <!-- Anti-bot honeypot -->
         <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" />
-        <!-- Timestamp trap (filled by JS) -->
+        <!-- Timestamp trap -->
         <input type="hidden" name="_start" id="startTime" />
-        <!-- Optional subject for the email you receive -->
+        <!-- Email subject -->
         <input type="hidden" name="_subject" value="New Valentine’s RSVP 💌" />
-        <!-- Make replies go to the guest -->
+        <!-- Reply-To -->
         <input type="hidden" name="_replyto" id="replyTo" />
 
         <div class="grid">
@@ -85,6 +102,10 @@
     </footer>
   </main>
 
-  <script src="script.js"></script>
+  <!-- Confetti Canvas -->
+  <canvas id="fxCanvas" class="fx-canvas" aria-hidden="true"></canvas>
+
+  <!-- Script -->
+  <script defer src="script.js"></script>
 </body>
 </html>
