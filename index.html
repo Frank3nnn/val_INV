@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Valentine’s RSVP 💌</title>
+  <meta name="description" content="You’re invited! Please RSVP for our Valentine’s celebration." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600..800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="card">
+    <header class="hero">
+      <div class="hearts" aria-hidden="true">❤︎ ❤︎ ❤︎</div>
+      <h1 class="title">Be My Valentine?</h1>
+      <p class="subtitle">February 14 • 7:00 PM • Your Place / Venue</p>
+    </header>
+
+    <section class="details">
+      <p>Hi! I’d love to celebrate with you. Kindly RSVP below. 💖</p>
+      <ul>
+        <li><strong>Dress code:</strong> Something red or pink</li>
+        <li><strong>Plan:</strong> Chill dinner + dessert</li>
+      </ul>
+    </section>
+
+    <section class="form-section">
+      <h2>RSVP</h2>
+
+      <!-- Inline status messages -->
+      <div id="form-status" role="status" aria-live="polite"></div>
+
+      <!-- Formspree integration -->
+      <form id="rsvpForm" action="https://formspree.io/f/xzdazqyw" method="POST">
+        <!-- Anti-bot honeypot (hidden field) -->
+        <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" />
+        <!-- Timestamp trap (filled by JS) -->
+        <input type="hidden" name="_start" id="startTime" />
+        <!-- Optional subject for the email you receive -->
+        <input type="hidden" name="_subject" value="New Valentine’s RSVP 💌" />
+        <!-- Make replies go to the guest -->
+        <input type="hidden" name="_replyto" id="replyTo" />
+
+        <div class="grid">
+          <label>
+            Full Name
+            <input type="text" name="name" required placeholder="Juan Dela Cruz" />
+          </label>
+
+          <label>
+            Email
+            <input type="email" name="email" required placeholder="juan@example.com" />
+          </label>
+
+          <label>
+            Will you attend?
+            <select name="attendance" required>
+              <option value="">Select…</option>
+              <option value="Yes">Yes, I’ll be there</option>
+              <option value="No">Sorry, can’t make it</option>
+              <option value="Maybe">Maybe</option>
+            </select>
+          </label>
+
+          <label>
+            Number of guests (incl. you)
+            <input type="number" name="guests" min="1" max="5" value="1" required />
+          </label>
+        </div>
+
+        <label>
+          Message (dietary needs, notes, etc.)
+          <textarea name="message" rows="4" placeholder="Anything I should know?"></textarea>
+        </label>
+
+        <button type="submit" id="submitBtn">Send RSVP</button>
+        <p class="muted">You’ll receive a confirmation after submitting.</p>
+      </form>
+    </section>
+
+    <footer class="footer">
+      <p>Made with ❤️ for Valentine’s</p>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
